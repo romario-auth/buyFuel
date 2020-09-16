@@ -8,7 +8,5 @@ app.listen(PORT, function(){
 });
 
 app.get('/', (req, res) => {
-    res.send("Está funcionando2");
+    res.send("Está funcionando 16 set 2020 - bb");
 })
-
-// npm install express express-handlebars body-parser sequelize mysql
