@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/romario-auth/buyFuel/issues"
   },
-  "homepage": "https://github.com/romario-auth/buyFuel#readme"
+  "homepage": "https://github.com/romario-auth/buyFuel#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
