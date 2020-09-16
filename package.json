@@ -1,0 +1,19 @@
+{
+  "name": "buyfuel",
+  "version": "1.0.0",
+  "description": "Buy fuel with a credit card",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romario-auth/buyFuel.git"
+  },
+  "author": "Romario de Melo Damasceno",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/romario-auth/buyFuel/issues"
+  },
+  "homepage": "https://github.com/romario-auth/buyFuel#readme"
+}
