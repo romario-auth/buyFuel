@@ -1,0 +1,29 @@
+<h3>Abastecer o carro</h3>
+<p class="text-right">Preço da gosolina</p>
+<p class="text-right price">R$ <span>00.00</span> / litro</p>
+
+<form action="/action_page.php">
+    <div class="row">
+    <div class="col-sm-12">
+        <input type="input" class="form-control" id="card" placeholder="Entre com o número do cartão de crédito" name="card" required>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+        <label for="quantLitters">Selecionar quantidade: <span id="displayQuant">00.00</span> litros </label><br>
+        <input type="range" class="slider" min="0" max="72" id="quantLitters" value="0" name="quantLitters" required>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Total a pagar R$: </span>
+        </div>
+        <input type="input" class="form-control" id="total" placeholder="Total: R$ 00,00" name="total" required>
+        </div>
+    </div>
+    <div class="col-sm-12 text-right mt-3 mb-3">
+        <button type="submit" class="btn btn-outline-success mt-3" id="btn-buy">Comprar</button>
+    </div>
+    </div>
+</form>

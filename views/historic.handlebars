@@ -1,0 +1,45 @@
+<form action="/venda/historico" method="POST">
+    <div class="row">
+    <div class="col-sm-12">
+        <label for="searchBuy" class="text-danger">Pesquisar compras feitas no cartão</label>
+        <input type="input" class="form-control" id="searchBuy" placeholder="Entre com o número do cartão de crédito" name="searchBuy" required>
+    </div>
+    <div class="col-sm-12 text-right mt-3 mb-3">
+        <button type="submit" class="btn btn-outline-success mt-3" id="btn-buy">Pesquisar</button>
+    </div>
+    </div>
+</form>
+
+<h3>Histórico de Compras</h3>
+
+<div class="row show-historic">
+    <div class="col-sm-12">
+        <p>Cartão: 
+        {{#if search}}
+            <span class="cardBuy">{{search}}</span></p>
+        {{else}}
+            <span class="cardBuy">&lt;Diversos&gt; Últimas compras</span></p>
+        {{/if}}
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-dark table-hover">
+    <thead>
+    <tr>
+        <th>Total</th>
+        <th>Quantidade</th>
+        <th>Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each vendas}}
+    <tr>
+        <td>R$ {{dataValues.value}}</td>
+        <td>{{dataValues.liters}}</td>
+        <td>{{dataValues.createdAt}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+</div>
