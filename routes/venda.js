@@ -33,14 +33,17 @@ router.post('/historico', (req, res) => {
     .catch(err => console.log(err));
 });
 
+
 // add 'venda' into POST
 router.post('/add', (req, res) => {
 
-    let {liters, value, card} = req.body;
+    let {liters, price, card} = req.body;
+    let value = liters * price;
 
     // insert date
     Venda.create({
         liters,
+        price,
         value,
         card
     })

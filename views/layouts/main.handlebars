@@ -18,6 +18,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
+              <a class="nav-link btn btn-outline-warning btn-link" href="/">Home</a>
+            </li> 
+            <li class="nav-item">
               <a class="nav-link btn btn-outline-warning btn-link" href="/venda/historico">Ver Histórico</a>
             </li>    
           </ul>
@@ -51,7 +54,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
-  var slider = document.getElementById("quantLitters");
+  var slider = document.getElementById("liters");
   var output = document.getElementById("displayQuant");
   output.innerHTML = slider.value;
   
@@ -64,28 +67,29 @@
 
     // Define Gasoline price
     $(".price span").text("4.705");
+    $("#priceSend").val("4.705");
 
     // Cacl Total Pay
     function caclTotal()
     {
         let price = $(".price span").text();
-        let quantLitters = $("#quantLitters").val();
-        let total = price * quantLitters;
+        let liters = $("#liters").val();
+        let total = price * liters;
 
         // Set #total 
-        $("#total").val(total);
+        $("#value").val(total);
 
         // Show Total
-        $("#total").prop('placeholder', "Total R$ " + total);
+        $("#value").prop('placeholder', "Total R$ " + total);
     }
 
     caclTotal();
-    $("#quantLitters").change(function(){
+    $("#liters").change(function(){
         caclTotal();
     });
 
     // Disable field #total insert valeu manual
-    $("#total").prop('disabled', true);
+    $("#value").prop('disabled', true);
   });
   </script>
 </body>

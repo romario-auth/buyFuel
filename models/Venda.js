@@ -5,6 +5,9 @@ const Venda = db.define('venda', {
     liters: {
         type: Sequelize.DOUBLE,
     },
+    price: {
+        type: Sequelize.DOUBLE,
+    },
     value: {
         type: Sequelize.DOUBLE,
     },
