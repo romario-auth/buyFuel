@@ -149,3 +149,7 @@ body
     color: white !important;
     font-weight: bold;
 }
+
+.progress{
+    height: 21px;
+}

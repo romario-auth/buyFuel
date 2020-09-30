@@ -2,15 +2,17 @@
 <p class="text-right">Preço da gosolina</p>
 <p class="text-right price">R$ <span>00.00</span> / litro</p>
 
-<form action="/venda/add" method="POST">
+<form>
     <div class="row">
     <div class="col-sm-12">
         <input type="input" class="form-control" id="card" placeholder="Entre com o número do cartão de crédito" name="card" required>
+        <span class="alert alert-warning alert-card">Cartão inválido</span>
     </div>
     <div class="col-sm-12">
         <div class="form-group">
         <label for="liters">Selecionar quantidade: <span id="displayQuant">00.00</span> litros </label><br>
         <input type="range" class="slider" min="0" max="72" id="liters" value="0" name="liters" required>
+        <span class="alert alert-warning alert-liters">Selecione 1 litro ou mais</span>
         <input type="hidden" id="priceSend" name="price" required>
         </div>
     </div>
@@ -24,7 +26,19 @@
         </div>
     </div>
     <div class="col-sm-12 text-right mt-3 mb-3">
-        <button type="submit" class="btn btn-outline-success mt-3" id="btn-buy">Comprar</button>
+        <a class="btn btn-outline-success mt-3" id="btn-buy">Comprar</a>
+    </div>
+    <div class="col-sm-12 text-right mt-3 mb-3">
+        <span id="statusBuy" class="text-white">Status</span>
     </div>
     </div>
 </form>
+
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div>
+    <button class="btn btn-dark new-buy-restart">Nova Compra</button>
+    <a href="/venda/historico" class="btn btn-light btn-after-historic">Histórico de Compras</a>
+</div>

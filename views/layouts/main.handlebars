@@ -50,7 +50,7 @@
 <div class="container-full footer">
   <p class="text-center">2020 - buyFuel Todos os direitos reservados.</p>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
@@ -91,6 +91,102 @@
     // Disable field #total insert valeu manual
     $("#value").prop('disabled', true);
   });
-  </script>
+</script>
+
+<script>
+$(document).ready(function(){
+
+    // hidden status buy
+    $("#statusBuy").css("display", "none");
+    $(".progress, .new-buy-restart, .btn-after-historic").css("display", "none");
+    // validade data
+    $(".alert-card, .alert-liters").css("display", "none");
+
+
+    $("#btn-buy").click(function(){
+
+        // get values;
+        let card = $("#card").val(); 
+        let liters = $("#liters").val();
+        let price = $("#priceSend").val();
+        let value = $("#value").val();
+
+        console.log("card number " + card.length);
+        if(card.length < 14){
+          $(".alert-card").show();
+          return false;
+        }else if(liters == 0)
+        {
+            $(".alert-liters").show();
+            return false;
+        }
+
+        console.log("Data get: " + card + liters + price + value);
+
+        $.ajax({
+          url: "/venda/add",
+          type: 'POST',
+          data: {
+            card: card,
+            liters: liters,
+            price: price,
+            value: value
+        },
+        beforeSend: function(){
+          $("#statusBuy").text("Realizando a compra...");
+          $("#statusBuy").show();
+
+          // Disable All field
+          $("#card, #btn-buy, #liters").prop('disabled', true);
+          $("#btn-buy").addClass("disabled");
+
+        }
+        })
+        .done(function(response){
+          $("#statusBuy").text("Compra realizada com sucesso.");
+          
+          // Show progress bar
+          $(".progress").show();
+          // Start progress bar 
+          timeFull = setInterval(full, 1000);
+        })
+        .fail(function(response){
+          $("#statusBuy").text("Não foi possível realizar sua compra. Recarregue a página e tente novamente");
+        });
+        
+    });
+
+
+  function full()
+  {
+    let ariaValueNow = parseInt($(".progress-bar").attr("aria-valuenow"));
+
+    if( ariaValueNow < 100)
+    {
+      newFull = (ariaValueNow+10);
+
+      $(".progress-bar").text(newFull + "% abastecendo...");
+      $(".progress-bar").css("width", newFull + "%");
+      $(".progress-bar").attr("aria-valuenow", newFull);
+    }
+    else
+    {
+      $(".progress-bar").text(newFull + "%" + " Obrigado, Volte sempre :)");
+      clearInterval(timeFull);
+
+        // Btn after the end progress bar
+        $(".new-buy-restart, .btn-after-historic").show();
+    }
+  }
+
+  $(".new-buy-restart").click(function(){
+    $("#card").val("");
+    $("#liters, #value").val("0");
+    $("#displayQuant").text("0");
+
+    location.reload();
+  });
+});
+</script>
 </body>
 </html>
